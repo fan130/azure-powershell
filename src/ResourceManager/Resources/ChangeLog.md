@@ -18,6 +18,14 @@
         - Additional information about change #1
 -->
 ## Current Release
+
+## Version 5.0.0
+* Add support for online help
+    - Run Get-Help with the -Online parameter to open the online help in your default Internet browser
+    
+## Version 4.4.1
+
+## Version 4.4.0
 * Add ManagedApplication cmdlets
     - New-AzureRmManagedApplication cmdlet to create a managed application
     - Get-AzureRmManagedApplication cmdlet to list all managed applications under a subscription or to get a specific managed application

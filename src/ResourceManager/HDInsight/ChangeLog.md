@@ -18,6 +18,12 @@
         - Additional information about change #1
 -->
 ## Current Release
+
+## Version 4.0.0
+* Add support for online help
+    - Run Get-Help with the -Online parameter to open the online help in your default Internet browser
+    
+## Version 3.4.1
 * Added support for Data Disks property in cluster creation
     - Added parameter 'WorkerNodeDataDisksGroups' to the New-AzureHDInsightCluster cmdlet
 
