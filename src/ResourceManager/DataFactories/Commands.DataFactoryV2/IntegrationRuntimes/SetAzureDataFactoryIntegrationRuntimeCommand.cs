@@ -97,6 +97,12 @@ namespace Microsoft.Azure.Commands.DataFactoryV2
 
         [Parameter(
             Mandatory = false,
+            HelpMessage = Constants.HelpIntegrationRuntimeSetupScriptContainerSasUri)]
+        [ValidateNotNullOrEmpty]
+        public string SetupScriptContainerSasUri { get; set; }
+
+        [Parameter(
+            Mandatory = false,
             HelpMessage = Constants.HelpIntegrationRuntimeMaxParallelExecutionsPerNode)]
         public int? MaxParallelExecutionsPerNode { get; set; }
 
@@ -330,6 +336,17 @@ namespace Microsoft.Azure.Commands.DataFactoryV2
                             Resources.IntegrationRuntimeInvalidVnet),
                         "Type");
                 }
+            }
+
+            if (!string.IsNullOrEmpty(SetupScriptContainerSasUri))
+            {
+                int index = SetupScriptContainerSasUri.IndexOf('?');
+
+                integrationRuntime.SsisProperties.CustomSetupScriptProperties = new IntegrationRuntimeCustomSetupScriptProperties()
+                {
+                    BlobContainerUri = index >= 0 ? SetupScriptContainerSasUri.Substring(0, index) : SetupScriptContainerSasUri,
+                    SasToken = index >= 0 ? new SecureString(SetupScriptContainerSasUri.Substring(index)) : null
+                };
             }
 
             integrationRuntime.Validate();
